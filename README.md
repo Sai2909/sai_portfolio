@@ -9,3 +9,6 @@ Currently, two official plugins are available:
 
 # SVG 
 https://pixabay.com/vectors/search/running/
+
+# tailwind
+https://tailwindcss.com/docs/margin

@@ -10,27 +10,34 @@ import User from './components/User/User'
 import Github from './components/Github/Github'
 import CodeLayout from './coding/CodeLayout'
 import TaskBoard from './coding/TaskBoard/TaskBoard'
-import Footer from './coding/Footer/Footer'
+import Dropdown from './coding/Dropdown/Dropdown'
+import Loadmore from './coding/Loadmore/Loadmore'
+import ModelPopup from './coding/ModelPopup/ModelPopup'
+import ErrorPage from './ErrorBoundary'
 
 // import Github, {githubInfoLoader} from './components/Github/Github.jsx'
 
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<Layout />}>
-      <Route path='' element={<Home />}/>
-      <Route path='about' element={<About />} />
-      <Route path='user/' element={<User />} >
-        <Route path=':userid' element={<User />} />
+    <Route path='/' element={<Layout />} errorElement= {<ErrorPage/>}>
+      <Route path='' element={<Home />} errorElement= {<ErrorPage/>}/>
+      <Route path='about' element={<About />} errorElement= {<ErrorPage/>}/>
+      <Route path='user/' element={<User />} errorElement= {<ErrorPage/>}>
+        <Route path=':userid' element={<User />}  errorElement= {<ErrorPage/>}/>
       </Route>
-      <Route path='coding/' element={<CodeLayout/>}>
-      <Route path='' element={<Footer />} />
-      <Route path='taskboard' element={<TaskBoard />} />
+      <Route path='coding' element={<CodeLayout/>} errorElement= {<ErrorPage/>}>
+      <Route path='' element={<Dropdown />} errorElement= {<ErrorPage/>}/>
+      <Route path='taskboard' element={<TaskBoard />} errorElement= {<ErrorPage/>}/>
+      <Route path='model' element={<ModelPopup />} errorElement= {<ErrorPage/>}/>
+      <Route path='loadmore' element={<Loadmore />} errorElement= {<ErrorPage/>}/>
       </Route>
-      <Route path='github' element={<Github />} />
-      <Route path='*' element={<div>Not Found</div>} />
+      <Route path='github' element={<Github />}errorElement= {<ErrorPage/>} />
+      <Route path='*' element={<div>Not Found</div>} errorElement= {<ErrorPage/>}/>
     </Route>
-  )
+  ), {
+    basename: '/sai_portfolio',
+  }
 )
 
 ReactDOM.createRoot(document.getElementById('root')).render(
